@@ -10,7 +10,19 @@ GARLANDはバーチャルサーカス団VALIS様のファンアートのネッ�
 
 ## ローカル開発
 
-TODO
+### Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
 ## CI/CD
 
