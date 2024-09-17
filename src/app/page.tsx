@@ -1,5 +1,8 @@
+"use client"
 import "./index.css"
 import "./App.css"
+import Form from "./_components/Form"
+import AnchorLink from "react-anchor-link-smooth-scroll";
 
 export default function Page() {
   return (
@@ -11,7 +14,7 @@ export default function Page() {
         <p className='h1sub outline'>#VALIS_ART ネップリ一覧化サービス</p>
       </div>
 
-      <div id="form"></div>
+      <Form />
 
       <div className='footer'>
         <h2>GARLAND(ガーランド)について</h2>
@@ -46,6 +49,9 @@ export default function Page() {
           <br />
           本サービスでは<a href="https://kamitsubaki.jp/guidelines/">KAMITSUBAKI STUDIO 二次創作ガイドライン</a>を不適切表現の基準といたします。
           <br />
+          <AnchorLink href="#advertisementFormArea" className="internalLink">
+            ネップリ登録へ戻る
+          </AnchorLink>
         </p>
 
         <h3>公式様</h3>

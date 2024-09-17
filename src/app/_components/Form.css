@@ -1,0 +1,61 @@
+.advertisementFormArea {
+  max-width: 550px;
+  width: 90%;
+  margin-top: 100px;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-left: auto;
+  text-align: center;
+}
+
+form.advertisementForm {
+  width: 100%;
+}
+
+label {
+  margin-top: 20px;
+  padding: 0;
+  display: block;
+}
+
+input {
+  box-sizing: border-box;
+  margin: 20px 0 0;
+  padding-right: 10px;
+  padding-left: 10px;
+  display: block;
+  line-height: 50px;
+  height: 50px;
+  width: 100%;
+  background-color: rgba(246,242,203, 0.8);
+  border: none;
+  border-bottom: 1px solid black;
+  color: black;
+  border-radius: 0%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+input.submitButton {
+  width: 100%;
+  height: 50px;
+  margin-top: 30px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0;
+  border: 1px solid black;
+  background-color: rgba(246,242,203, 0.8);
+}
+
+input.submitButton.valid {
+
+}
+
+input.submitButton.invalid {
+
+}
+
+span.error {
+  color: #d63235;
+  font-weight: 700;
+}

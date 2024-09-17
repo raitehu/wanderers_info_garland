@@ -59,6 +59,7 @@ a.internalLink {
   display: inline-block;
   border-bottom: 1px solid black;
   margin-top: 20px;
+  text-decoration: none;
 }
 
 .outline {
