@@ -1,0 +1,103 @@
+body {
+  margin: 0;
+  font-family: 'Noto Serif JP', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  background-image: url(./circus.png);
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: cover;
+  content: "";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+}
+
+:focus {
+  outline: none;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.header {
+  width: 90%;
+  max-width: 550px;
+  margin-top: 150px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+h1 {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  font-weight: bold;
+  letter-spacing: 0.7rem;
+}
+
+a:link, a:visited, a:hover, a:active, a:focus {
+  color: #F6F2CB;
+  font-weight: bold;
+  display: inline-block;
+  margin: 0 2px 0;
+}
+
+a.internalLink {
+  color: black;
+  display: inline-block;
+  border-bottom: 1px solid black;
+  margin-top: 20px;
+}
+
+.outline {
+  text-shadow:1px 1px 0 #F6F2CB, -1px -1px 0 #F6F2CB,
+              -1px 1px 0 #F6F2CB, 1px -1px 0 #F6F2CB,
+              0px 1px 0 #F6F2CB,  0-1px 0 #F6F2CB,
+              -1px 0 0 #F6F2CB, 1px 0 0 #F6F2CB;
+}
+
+[data-ruby] {
+  position: relative;
+}
+
+[data-ruby]::before {
+  content: attr(data-ruby);
+  position: absolute;
+  top: -1em;
+  left: 0;
+  right: 0;
+  margin: auto;
+  font-size: 0.5em;
+}
+
+.footer {
+  margin-top: 50px;
+  padding: 50px 0 50px;
+  width: 100%;
+  color: #F6F2CB;
+  background-color: #A62528;
+}
+
+.footer h3 {
+  margin-top: 20px;
+}
+
+.footer p {
+  width: 90%;
+  max-width: 550px;
+  margin: 20px auto 0;
+  line-height: 2.0rem;
+  text-align: left;
+}

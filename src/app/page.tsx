@@ -1,95 +1,70 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import "./index.css"
+import "./App.css"
 
-export default function Home() {
+export default function Page() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="App">
+      <div className="header">
+        <h1 className='outline'>
+          <span data-ruby="ガーランド">GARLAND</span>
+        </h1>
+        <p className='h1sub outline'>#VALIS_ART ネップリ一覧化サービス</p>
+      </div>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      <div id="form"></div>
+
+      <div className='footer'>
+        <h2>GARLAND(ガーランド)について</h2>
+        <p>
+          GARLAND(以下本サービス)はバーチャルサーカス団VALIS様のファンアートのネップリを広報することを目的としています。
+          <br />
+          本サービスの開発・運営はVALIS公式様とは無関係の、有志のファンによって行っていますので、本サービスへの質問やお問合せはVALIS公式様ではなく<a href='https://x.com/WANDERERSINFO'>WANDERER&apos;S INFO運営</a>のDMまでお願いいたします。
+        </p>
+
+        <h3>ご利用のみなさまへ</h3>
+        <p>
+          本サービスでVALIS_ARTとは無関係なツイートの告知や、不適切表現を含む画像や文面のツイートが告知された場合はお手数ですが<a href='https://x.com/WANDERERSINFO'>WANDERER&apos;S INFO運営</a>のDMまでご連絡ください。
+          <br />
+          現段階では気軽にお使いいただくことを目的としているため登録時に絵師様の本人確認を行っておりませんが、問題が発生した際には事前の告知なくアカウントの制限や本人確認機能の追加、最悪のケースではサービスのクローズを行う可能性があります。
+          <br />
+          誰しもが快適に使い続けられるよう、思いやりと節度を持ったご利用をお願いいたします。
+        </p>
+
+        <h3 id="forIllustrators">登録される方へ</h3>
+        <p>
+          本サービスにはどなた様も無償で告知ツイートを登録することができます。
+          <br />
+          ただし、サービスへの登録は絵師様ご本人のみが行っていただき、第三者が行うことはご遠慮ください。
+          <br />
+          登録いただくことで有効期限内の一覧ページへの掲載と引用RTによる自動告知が行われます。
+          <br />
+          期限切れとなった告知ツイートは自動的にサイトから削除されますのでご対応いただく必要はありません。
+          <br />
+          誤って登録されて内容を変更したい場合や、期限内の削除を行いたい場合は<a href='https://x.com/WANDERERSINFO'>WANDERER&apos;S INFO運営</a>のDMまでご連絡ください。
+          <br />
+          内容に不適切な表現が含まれると運営が判断した場合や削除依頼があった場合は事前のご連絡無く削除を行うことがあります。
+          <br />
+          本サービスでは<a href="https://kamitsubaki.jp/guidelines/">KAMITSUBAKI STUDIO 二次創作ガイドライン</a>を不適切表現の基準といたします。
+          <br />
+        </p>
+
+        <h3>公式様</h3>
+        <dl>
+          <dt>X</dt>
+          <dd><a href='https://x.com/VALIS_Official'>@VALIS_Official</a></dd>
+          <dt>YouTube</dt>
+          <dd><a href='https://www.youtube.com/c/VALIS_Official'>VALIS</a></dd>
+          <dt>セカンドチャンネル</dt>
+          <dd><a href='https://www.youtube.com/@mugenshoujo_valis'>無限少女ヴァリス</a></dd>
+          <dt>公式サイト</dt>
+          <dd><a href='https://valis.kamitsubaki.jp/'>VALIS</a></dd>
+          <dt>所属スタジオ</dt>
+          <dd><a href='https://kamitsubaki.jp/'>KAMITSUBAKI STUDIO</a></dd>
+        </dl>
+
+        <h3>開発責任者</h3>
+        <a href='https://x.com/RaitehuV'>霧島らいてふ</a>
+      </div>
     </div>
-  );
+  )
 }
