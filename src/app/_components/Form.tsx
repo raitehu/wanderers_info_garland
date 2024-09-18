@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 import "./Form.css";
 
-export default function Form() {
+export function Form() {
 
   const { register, handleSubmit, formState: { errors },}= useForm();
   // フロントでのバリデーションに用いる正規表現
@@ -70,7 +70,7 @@ export default function Form() {
             }
           })}
         />
-        <span className="error">{ errors.TweetURL && errors.TweetURL.message }</span>
+        <span className="error">{ errors.TweetURL && errors.TweetURL.message as string }</span>
 
         <label className="outline">プリント期限</label>
         <input
@@ -82,7 +82,7 @@ export default function Form() {
             }
           })}
         />
-        <span className="error">{ errors.ExpireDate && errors.ExpireDate.message }</span>
+        <span className="error">{ errors.ExpireDate && errors.ExpireDate.message as string}</span>
 
         <input type="submit" className="submitButton" />
       </form>

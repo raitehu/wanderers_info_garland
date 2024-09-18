@@ -16,12 +16,11 @@ First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+
+```bash
+docker build . -t garland
+docker run -p 3000:3000 garland
 ```
 
 ## CI/CD

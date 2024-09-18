@@ -1,7 +1,7 @@
 "use client"
 import "./index.css"
 import "./App.css"
-import Form from "./_components/Form"
+import { Form } from "./_components/Form"
 import AnchorLink from "react-anchor-link-smooth-scroll";
 
 export default function Page() {

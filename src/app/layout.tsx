@@ -1,5 +1,5 @@
-import { Props } from "next/script";
 import { Noto_Serif_JP } from "next/font/google";
+import { Metadata } from "next";
 import ToastProvider from "./_components/Toaster";
 import "./reset.css";
 
@@ -11,11 +11,9 @@ const NotoSerifJP = Noto_Serif_JP(
   }
 )
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "GARLAND | VALIS_ART ネップリ一覧化&広報サービス",
   description: "バーチャルサーカス団VALIS様のファンアートのネップリを一覧化・広報するサービス",
-  charset: "utf-8",
-  "theme-color": "#000000"
 }
 
 export const viewport = {
@@ -23,7 +21,7 @@ export const viewport = {
   width: "device-width"
 }
 
-export default function RootLayout({ children }: Props) {
+export default function RootLayout({ children, }: { children: React.ReactNode }) {
   return (
     <html lang="ja">
       <body className={`${NotoSerifJP.className}`}>
