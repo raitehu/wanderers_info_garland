@@ -27,9 +27,8 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
       <body className={`${NotoSerifJP.className}`}>
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <ToastProvider>
-          { children }
+          <div id="root">{ children }</div>
         </ToastProvider>
-        <div id="root">{ children }</div>
       </body>
     </html>
   )
