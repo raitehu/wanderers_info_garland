@@ -32,7 +32,7 @@ export function Form() {
 
     fetch("/api/register/", request)
       .then(async (res) => {
-        if (res.status === 201) {
+        if (res.status === 200 || res.status === 201) {
           toast.success("登録を受け付けました。リロードします");
           await sleep(1500);
           window.location.reload();
