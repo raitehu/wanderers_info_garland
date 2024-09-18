@@ -1,6 +1,7 @@
-import { Props } from "next/script"
-import { Noto_Serif_JP } from "next/font/google"
-import "./reset.css"
+import { Props } from "next/script";
+import { Noto_Serif_JP } from "next/font/google";
+import ToastProvider from "./_components/Toaster";
+import "./reset.css";
 
 const NotoSerifJP = Noto_Serif_JP(
   {
@@ -27,7 +28,10 @@ export default function RootLayout({ children }: Props) {
     <html lang="ja">
       <body className={`${NotoSerifJP.className}`}>
         <noscript>You need to enable JavaScript to run this app.</noscript>
-        <div id="root">{children}</div>
+        <ToastProvider>
+          { children }
+        </ToastProvider>
+        <div id="root">{ children }</div>
       </body>
     </html>
   )

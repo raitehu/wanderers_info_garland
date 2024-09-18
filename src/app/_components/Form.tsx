@@ -1,6 +1,8 @@
 "use client"
 import { useForm } from "react-hook-form";
 import AnchorLink from "react-anchor-link-smooth-scroll";
+import { toast } from "react-toastify";
+
 import "./Form.css";
 
 export default function Form() {
@@ -11,16 +13,41 @@ export default function Form() {
   // プレースホルダ
   const exampleTwitterURL = "https://x.com/Example_User/status/0000000000000000";
 
+  const sleep = (time) => new Promise((r) => setTimeout(r, time));
+
 
   // APIをコールする処理
   const onSubmit = async (data) => {
     const TweetURL = data.TweetURL.split("?")[0];
     const ExpireDate = `${data.ExpireDate.split(":")[0]}:00:00+09:00`;
 
-    console.log(TweetURL)
-    console.log(ExpireDate)
-    // ここにバックエンドの登録APIを叩く処理を書く
-    // 同期処理を行った後リロードする
+    const request = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        TweetURL: TweetURL,
+        ExpireDate: ExpireDate
+      })
+    };
+
+    fetch("/api/register/", request)
+      .then(async (res) => {
+        if (res.status === 201) {
+          toast.success("登録を受け付けました。リロードします");
+          await sleep(1500);
+          window.location.reload();
+        } else {
+          toast.error("登録に失敗しました。リロードします")
+          await sleep(1500);
+          window.location.reload();
+        }
+      })
+      .catch(async () => {
+        toast.error("登録に失敗しました。リロードします")
+          await sleep(1500);
+          window.location.reload();
+      })
+    return;
   }
 
   return (
