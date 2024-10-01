@@ -1,35 +1,12 @@
 import { NextResponse } from "next/server";
-import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { PutCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
-
-// TODO 認証周りをクラウドに乗せられるように修正する
-const client = new DynamoDBClient({
-  region: "ap-northeast-1",
-  credentials: {
-    accessKeyId: "dummy",
-    secretAccessKey: "dummy"
-  },
-  endpoint: "http://localstack:4566"
-});
-const docClient = DynamoDBDocumentClient.from(client);
+import { Put } from "@/app/_components/DynamoDB";
 
 export async function POST(request) {
-  const body = await request.json()
-  console.log("url", body.TweetURL);
-  console.log("date" ,body.ExpireDate);
+  const body = await request.json();
 
-  const command = new PutCommand({
-    TableName: "Garland", // TODO テーブル名は環境変数にする
-    Item: {
-      TweetURL: body.TweetURL,
-      ExpireDate: body.ExpireDate,
-    },
-  });
-
-  const response = await docClient.send(command); // TODO エラーハンドリング
-  console.log(response);
-
-  return NextResponse.json(
-    { status: 201 }
-  );
+  await Put(body.ExpireDate, body.TweetURL).catch((err) => {
+    console.error(err);
+    return NextResponse.json({}, { status: 500 });
+  })
+  return NextResponse.json({}, { status: 200 });
 }
