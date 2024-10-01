@@ -1,0 +1,62 @@
+.advertisementArea {
+  margin-top: 100px;
+  width: 100%;
+}
+
+.advertisementArea h2 {
+  font-weight: bold;
+  color: black;
+}
+
+.advertisement {
+  max-width: 550px;
+  width: 90%;
+  min-height: 800px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.twitter-tweet.twitter-tweet-rendered {
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  position: relative;
+  min-height: 500px;
+}
+
+.twitter-tweet.twitter-tweet-rendered::before {
+  content: '';
+  width: 100%;
+  min-height: 500px;
+  z-index: 0;
+  position: absolute;
+  background-color: rgba(246,242,203, 0.8);
+  border-radius: 10px;
+}
+
+.twitter-tweet.twitter-tweet-rendered::after {
+  content: '';
+  background-image: url('./loading.gif');
+  background-repeat: no-repeat;
+  width: 225px;
+  height: 235px;
+  z-index: 2;
+  position: absolute;
+  left: 28%;
+  top: 28%;
+}
+
+.twitter-tweet.twitter-tweet-rendered > iframe {
+  z-index: 10;
+}
+
+.expireDate {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.noIllustsMessage {
+  padding-top: 140px;
+  height: 300px;
+}

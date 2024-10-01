@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { PutCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
+import { ScanCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
+
+export const dynamic = "force-dynamic";
 
 // TODO 認証周りをクラウドに乗せられるように修正する
 const client = new DynamoDBClient({
@@ -13,23 +15,13 @@ const client = new DynamoDBClient({
 });
 const docClient = DynamoDBDocumentClient.from(client);
 
-export async function POST(request) {
-  const body = await request.json()
-  console.log("url", body.TweetURL);
-  console.log("date" ,body.ExpireDate);
-
-  const command = new PutCommand({
+export async function GET() {
+  const command = new ScanCommand({
     TableName: "Garland", // TODO テーブル名は環境変数にする
-    Item: {
-      TweetURL: body.TweetURL,
-      ExpireDate: body.ExpireDate,
-    },
   });
 
   const response = await docClient.send(command); // TODO エラーハンドリング
   console.log(response);
 
-  return NextResponse.json(
-    { status: 201 }
-  );
+  return NextResponse.json(response);
 }

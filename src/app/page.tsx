@@ -2,6 +2,7 @@
 import "./index.css"
 import "./App.css"
 import { Form } from "./_components/Form"
+import { List } from "./_components/List"
 import AnchorLink from "react-anchor-link-smooth-scroll";
 
 export default function Page() {
@@ -15,6 +16,7 @@ export default function Page() {
       </div>
 
       <Form />
+      <List />
 
       <div className='footer'>
         <h2>GARLAND(ガーランド)について</h2>
