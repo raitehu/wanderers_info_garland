@@ -42,8 +42,8 @@
   height: 235px;
   z-index: 2;
   position: absolute;
-  left: 28%;
-  top: 28%;
+  left: calc(50% - 112px);
+  top: calc(50% - 117px);
 }
 
 .twitter-tweet.twitter-tweet-rendered > iframe {
