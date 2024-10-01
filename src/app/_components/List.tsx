@@ -10,6 +10,22 @@ interface Tweet {
   TweetURL: string;
 }
 
+const timeFormat = (dateString: string): string => {
+  const date = new Date(dateString);
+
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1; // getMonth() start from 0
+  const day = date.getDate();
+  const hour = date.getHours();
+
+  return `${year}/${month}/${day} ${hour}`;
+}
+
+const tweetId = (tweetURL: string): string => {
+  return tweetURL.replace(/\/$/, '').split('/').slice(-1)[0];
+}
+
+
 export function List() {
   const [data, setData] = useState<Tweet[] | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -23,7 +39,7 @@ export function List() {
 
   if (error) return <div>Error: {error}</div>;
 
-  if (!data) {
+  if (data === null || data.length === 0) {
     return (
       <div className="advertisementArea">
         <p className="noIllustsMessage outline">現在登録されているネップリはありません</p>
@@ -36,9 +52,9 @@ export function List() {
         {data.map((item, index) => (
           <div className="advertisement" key={index}>
             <p className='expireDate outline'>
-              <span>{item.ExpireDate}</span>時頃まで
+              <span>{timeFormat(item.ExpireDate)}</span>時頃まで
             </p>
-            <TwitterTweetEmbed tweetId={item.TweetURL.replace(/\/$/, '').split('/').slice(-1)[0]} />
+            <TwitterTweetEmbed tweetId={tweetId(item.TweetURL)} />
           </div>
         ))}
       </div>
