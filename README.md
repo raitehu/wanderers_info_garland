@@ -46,6 +46,7 @@ aws --profile localstack dynamodb create-table \
 ```bash
 docker build . -t garland
 docker run -p 3000:3000 \
+  --env-file .env \
   --link localstack:localstack \
   --net=wanderers_info_garland_localstack \
  garland
@@ -66,4 +67,10 @@ TODO
 
 ## 環境変数
 
-TODO
+| Key | Description | Example |
+| ---- | ---- | ---- |
+| TABLE_NAME | DynamoDBのテーブル名 | Garland |
+| REGION | DynamoDBのリージョン | ap-northeast-1 |
+| ACCESS_KEY_ID | IAM Userから払い出したAccessKey | dummy |
+| SECRET_ACCESS_KEY | IAM Userから払い出したSecretAccessKey | dummy |
+| DYNAMODB_ENDPOINT | DynamoDBのエンドポイント名 | http://localstack:4566 |

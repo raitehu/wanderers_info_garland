@@ -1,15 +1,16 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { ScanCommand, PutCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 
-const tableName = "Garland";
-const client = new DynamoDBClient({
-  region: "ap-northeast-1",
+const tableName = process.env.TABLE_NAME;
+const config = {
+  region: process.env.REGION,
   credentials: {
-    accessKeyId: "dummy",
-    secretAccessKey: "dummy"
+    accessKeyId: process.env.ACCESS_KEY_ID as string,
+    secretAccessKey: process.env.SECRET_ACCESS_KEY as string
   },
-  endpoint: "http://localstack:4566"
-});
+  endpoint: process.env.DYNAMODB_ENDPOINT
+}
+const client = new DynamoDBClient(config);
 const docClient = DynamoDBDocumentClient.from(client);
 
 export async function Scan() {
