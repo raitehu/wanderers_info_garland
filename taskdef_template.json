@@ -2,7 +2,7 @@
   "family": "${TASK_FAMILY}",
   "cpu": "256",
   "memory": "512",
-  "network_mode": "awsvpc",
+  "networkMode": "awsvpc",
   "requirementCompatibilities": ["FARGATE"],
   "runtimePlatform": {
     "operatingSystemFamily": "LINUX",
