@@ -5,7 +5,6 @@ env:
     ENV: ENV
     REGION: ap-northeast-1
     ACCOUNT: 559300055890
-    ECR_IMAGE_URL: ECR_IMAGE_URL
     LOG_GROUP: LOG_GROUP
     TABLE_NAME: TABLE_NAME
     ACCESS_KEY_ID_ARN: ACCESS_KEY_ID_ARN
@@ -33,8 +32,10 @@ phases:
     commands:
       - envsubst < taskdef_template.json > taskdef.json
       - envsubst < appspec_template.yml > appspec.yml
+      - printf '{"Version":"1.0","ImageURI":"%s"}' $SERVICE_NAME:latest > imageDetail.json
 
 artifacts:
   files:
     - taskdef.json
     - appspec.yml
+    - imageDetail.json
