@@ -10,16 +10,21 @@ env:
     TABLE_NAME: TABLE_NAME
     ACCESS_KEY_ID_ARN: ACCESS_KEY_ID_ARN
     SECRET_ACCESS_KEY_ARN: SECRET_ACCESS_KEY_ARN
+  parameter-store:
+    DOCKER_USER: dockerhub-user
+    DOCKER_TOKEN: dockerhub-token
 
 phases:
   pre_build:
+    on-failure: ABORT
     commands:
       - export SERVICE_NAME=$ENV-garland
       - export TASK_FAMILY=$SERVICE_NAME
       - export CONTAINER_NAME=$SERVICE_NAME
-      - printenv
       - aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $ACCOUNT.dkr.ecr.$REGION.amazonaws.com
+      - echo $DOCKER_TOKEN | docker login -u $DOCKER_USER --password-stdin
   build:
+    on-failure: ABORT
     commands:
       - docker build --platform linux/amd64 -t $SERVICE_NAME .
       - docker tag $SERVICE_NAME:latest $ACCOUNT.dkr.ecr.$REGION.amazonaws.com/$SERVICE_NAME:latest
