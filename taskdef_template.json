@@ -8,6 +8,8 @@
     "operatingSystemFamily": "LINUX",
     "cpuArchitecture": "X86_64"
   },
+  "taskRoleArn": "${TASK_ROLE_ARN}",
+  "executionRoleArn": "${TASK_EXECUTION_ROLE_ARN}",
   "containerDefinitions": [
     {
       "name": "${CONTAINER_NAME}",
