@@ -34,7 +34,7 @@ phases:
     commands:
       - envsubst < taskdef_template.json > taskdef.json
       - envsubst < appspec_template.yml > appspec.yml
-      - printf '{"Version":"1.0","ImageURI":"%s"}' $SERVICE_NAME:latest > imageDetail.json
+      - printf '{"Version":"1.0","ImageURI":"%s"}' $ACCOUNT.dkr.ecr.$REGION.amazonaws.com/$SERVICE_NAME:latest > imageDetail.json
 
 artifacts:
   files:
