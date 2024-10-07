@@ -5,9 +5,6 @@ env:
     ENV: ENV
     REGION: ap-northeast-1
     ACCOUNT: 559300055890
-    SERVICE_NAME: $ENV-garland
-    TASK_FAMILY: $SERVICE_NAME
-    CONTAINER_NAME: $SERVICE_NAME
     ECR_IMAGE_URL: ECR_IMAGE_URL
     LOG_GROUP: LOG_GROUP
     TABLE_NAME: TABLE_NAME
@@ -17,6 +14,9 @@ env:
 phases:
   pre_build:
     commands:
+      - export SERVICE_NAME=$ENV-garland
+      - export TASK_FAMILY=$SERVICE_NAME
+      - export CONTAINER_NAME=$SERVICE_NAME
       - printenv
       - aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $ACCOUNT.dkr.ecr.$REGION.amazonaws.com
   build:
