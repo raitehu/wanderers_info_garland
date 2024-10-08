@@ -17,20 +17,20 @@ const docClient = DynamoDBDocumentClient.from(client);
 export async function Scan() {
   const command = { TableName: tableName };
 
-  console.log('%o', {
+  console.log(JSON.stringify({
     level: "INFO",
     message: "DynamoDBからデータを取得します",
     body: command
-  });
+  }));
 
   const response = await docClient
     .send(new ScanCommand(command))
     .then((res) => {
-      console.log('%o', {
+      console.log(JSON.stringify({
         level: "INFO",
         message: "DynamoDBからデータを取得しました",
         body: res
-      });
+      }));
       return res;
     })
     .catch((err) => {throw new Error(err)});
@@ -48,11 +48,11 @@ export async function Put(expireDate: string, tweetURL: string) {
     },
   };
 
-  console.log('%o', {
+  console.log(JSON.stringify({
     level: "INFO",
     message: "データをDynamoDBへ登録します",
     body: command
-  });
+  }));
 
   const response = await docClient
     .send(new PutCommand(command))
