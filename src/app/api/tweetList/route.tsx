@@ -4,11 +4,11 @@ import { Scan } from "@/app/_components/DynamoDB";
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  console.log('%o', {
+  console.log(JSON.stringify({
     level: "INFO",
     message: "[API] TweetListが呼ばれました",
     body: ""
-  });
+  }));
 
   const basePeriod = Date.now()/1000; // 古いデータを表示しないための基準時間
   const response = await Scan()
@@ -17,7 +17,11 @@ export async function GET() {
       return { Items: data.Items?.filter((item) => item.UnixTime >= basePeriod) }
     })
     .catch((err) => {
-    console.error(err);
+    console.error(JSON.stringify({
+      level: "ERROR",
+      message: "[API] TweetListでエラーが発生しました",
+      body: err
+    }));
     return NextResponse.json({}, { status: 500 });
   })
   return NextResponse.json(response, { status: 200 });
