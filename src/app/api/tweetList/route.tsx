@@ -14,7 +14,14 @@ export async function GET() {
   const response = await Scan()
     .then((data) => {
       // 古くなったデータを除外する
-      return { Items: data.Items?.filter((item) => item.UnixTime >= basePeriod) }
+      return {
+        Items: data.Items?.filter((item) => item.UnixTime >= basePeriod)
+          .sort((a, b) => {
+            if(a.UnixTime < b.UnixTime) return -1;
+            if(a.UnixTime > b.UnixTime) return 1;
+            return 0;
+          })
+      }
     })
     .catch((err) => {
     console.error(JSON.stringify({
