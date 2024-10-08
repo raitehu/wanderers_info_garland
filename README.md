@@ -32,10 +32,10 @@ aws --profile localstack dynamodb create-table \
 --table-name Garland \
 --attribute-definitions \
     AttributeName=TweetURL,AttributeType=S \
-    AttributeName=ExpireDate,AttributeType=S \
+    AttributeName=UnixTime,AttributeType=N \
 --key-schema \
     AttributeName=TweetURL,KeyType=HASH \
-    AttributeName=ExpireDate,KeyType=RANGE \
+    AttributeName=UnixTime,KeyType=RANGE \
 --provisioned-throughput \
     ReadCapacityUnits=10,WriteCapacityUnits=5 \
 --endpoint-url=http://localhost:4566
