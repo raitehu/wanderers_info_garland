@@ -1,4 +1,5 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { DateTime } from "luxon";
 import { ScanCommand, PutCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 
 const tableName = process.env.TABLE_NAME;
@@ -14,23 +15,47 @@ const client = new DynamoDBClient(config);
 const docClient = DynamoDBDocumentClient.from(client);
 
 export async function Scan() {
-  const command = new ScanCommand({
-    TableName: tableName
+  const command = { TableName: tableName };
+
+  console.log('%o', {
+    level: "INFO",
+    message: "DynamoDBからデータを取得します",
+    body: command
   });
 
-  const response = await docClient.send(command).catch((err) => {throw new Error(err)});
+  const response = await docClient
+    .send(new ScanCommand(command))
+    .then((res) => {
+      console.log('%o', {
+        level: "INFO",
+        message: "DynamoDBからデータを取得しました",
+        body: res
+      });
+      return res;
+    })
+    .catch((err) => {throw new Error(err)});
   return response;
 }
 
 export async function Put(expireDate: string, tweetURL: string) {
-  const command = new PutCommand({
+  const unixTime = DateTime.fromISO(expireDate, { zone: "Asia/Tokyo" }).toMillis()/1000;
+  const command = {
     TableName: tableName,
     Item: {
+      UnixTime: unixTime,
       ExpireDate: expireDate,
       TweetURL: tweetURL,
     },
+  };
+
+  console.log('%o', {
+    level: "INFO",
+    message: "データをDynamoDBへ登録します",
+    body: command
   });
 
-  const response = await docClient.send(command).catch((err) => {throw new Error(err)});
+  const response = await docClient
+    .send(new PutCommand(command))
+    .catch((err) => {throw new Error(err)});
   return response;
 }
