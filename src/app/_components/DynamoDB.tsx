@@ -1,4 +1,5 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { DateTime } from "luxon";
 import { ScanCommand, PutCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 
 const tableName = process.env.TABLE_NAME;
@@ -23,9 +24,11 @@ export async function Scan() {
 }
 
 export async function Put(expireDate: string, tweetURL: string) {
+  const unixTime = DateTime.fromISO(expireDate, { zone: "Asia/Tokyo" }).toMills();
   const command = new PutCommand({
     TableName: tableName,
     Item: {
+      UnixTime: unixTime,
       ExpireDate: expireDate,
       TweetURL: tweetURL,
     },
