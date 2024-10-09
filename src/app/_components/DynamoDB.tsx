@@ -20,7 +20,8 @@ export async function Scan() {
   console.log(JSON.stringify({
     level: "INFO",
     message: "DynamoDBからデータを取得します",
-    body: command
+    body: command,
+    timestamp: DateTime.local().setZone("Asia/Tokyo").toString()
   }));
 
   const response = await docClient
@@ -29,7 +30,8 @@ export async function Scan() {
       console.log(JSON.stringify({
         level: "INFO",
         message: "DynamoDBからデータを取得しました",
-        body: res
+        body: res,
+        timestamp: DateTime.local().setZone("Asia/Tokyo").toString()
       }));
       return res;
     })
@@ -51,7 +53,8 @@ export async function Put(expireDate: string, tweetURL: string) {
   console.log(JSON.stringify({
     level: "INFO",
     message: "データをDynamoDBへ登録します",
-    body: command
+    body: command,
+    timestamp: DateTime.local().setZone("Asia/Tokyo").toString()
   }));
 
   const response = await docClient

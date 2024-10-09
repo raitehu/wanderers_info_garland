@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Scan } from "@/app/_components/DynamoDB";
+import { DateTime } from "luxon";
 
 export const dynamic = "force-dynamic";
 
@@ -7,7 +8,8 @@ export async function GET() {
   console.log(JSON.stringify({
     level: "INFO",
     message: "[API] TweetListが呼ばれました",
-    body: ""
+    body: "",
+    timestamp: DateTime.local().setZone("Asia/Tokyo").toString()
   }));
 
   const basePeriod = Date.now()/1000; // 古いデータを表示しないための基準時間
@@ -27,7 +29,8 @@ export async function GET() {
     console.error(JSON.stringify({
       level: "ERROR",
       message: "[API] TweetListでエラーが発生しました",
-      body: err
+      body: err,
+      timestamp: DateTime.local().setZone("Asia/Tokyo").toString()
     }));
     return NextResponse.json({}, { status: 500 });
   })
