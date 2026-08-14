@@ -4,6 +4,18 @@ import { DateTime } from "luxon";
 
 export const dynamic = "force-dynamic";
 
+const errorDetails = (error: unknown) => {
+  if (error instanceof Error) {
+    return {
+      name: error.name,
+      message: error.message,
+      stack: error.stack,
+    };
+  }
+
+  return { value: String(error) };
+};
+
 export async function GET() {
   console.log(JSON.stringify({
     level: "INFO",
@@ -29,7 +41,7 @@ export async function GET() {
     console.error(JSON.stringify({
       level: "ERROR",
       message: "[API] TweetListでエラーが発生しました",
-      body: err,
+      body: errorDetails(err),
       timestamp: DateTime.local().setZone("Asia/Tokyo").toString()
     }));
     return NextResponse.json({}, { status: 500 });
